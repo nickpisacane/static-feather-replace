@@ -1,0 +1,41 @@
+{
+  "name": "static-feather-replace",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "author": "Nicholas Pisacane <pisacanen@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nickpisacane/static-feather-replace"
+  },
+  "bin": {
+    "feather-replace": "./build/cli.js",
+    "static-feather-replace": "./build/cli.js"
+  },
+  "types": "./build/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "prepublish": "yarn run build",
+    "test": "jest",
+    "test:watch": "yarn run test --watch"
+  },
+  "dependencies": {
+    "feather-icons": "^4.17.0",
+    "fs-extra": "^7.0.1",
+    "get-stdin": "^6.0.0",
+    "jest": "23.6.0",
+    "jsdom": "^13.2.0",
+    "typescript": "^3.3.3",
+    "yargs": "^13.1.0"
+  },
+  "devDependencies": {
+    "@types/feather-icons": "^4.7.0",
+    "@types/fs-extra": "^5.0.5",
+    "@types/get-stdin": "^5.0.1",
+    "@types/jest": "^24.0.4",
+    "@types/jsdom": "^12.2.2",
+    "@types/node": "^11.9.3",
+    "@types/yargs": "^12.0.9",
+    "ts-jest": "^23.10.5"
+  }
+}
