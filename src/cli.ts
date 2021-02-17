@@ -40,18 +40,15 @@ const main = async () => {
   const inFile: string | null = argv._[0] || null;
   const outFile: string | null | unknown = argv.o || argv.outFile || null;
   const attrs: FeatherAttributes = Object.keys(argv)
-    .filter(key => reservedFlags.has(key) || key === '$0' || key === '_')
-    .reduce(
-      (attrs, key) => {
-        const value = argv[key];
-        if (typeof value === 'string' || typeof value === 'number') {
-          attrs[key] = value;
-        }
+    .filter((key) => !reservedFlags.has(key) && key !== '$0' && key !== '_')
+    .reduce((attrs, key) => {
+      const value = argv[key];
+      if (typeof value === 'string' || typeof value === 'number') {
+        attrs[key] = value;
+      }
 
-        return attrs;
-      },
-      {} as FeatherAttributes,
-    );
+      return attrs;
+    }, {} as FeatherAttributes);
 
   const input = await (inFile ? fs.readFile(inFile) : getStdin());
   const html = replaceFeatherIcons(input.toString(), attrs);
@@ -63,7 +60,7 @@ const main = async () => {
   }
 };
 
-main().catch(err =>
+main().catch((err) =>
   process.nextTick(() => {
     throw err;
   }),
